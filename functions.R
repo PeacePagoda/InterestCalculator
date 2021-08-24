@@ -117,21 +117,3 @@ get_interest_summary <- function(principal, interest_rate, compound, no_of_time_
   
   return(result)
 }
-
-
-plot_results <- function(result){
-  highchart() %>% 
-    hc_chart(type = "column") %>% 
-    hc_xAxis(title = list(text = "Years")) %>% 
-    hc_plotOptions(column = list(
-      dataLabels = list(enabled = FALSE),
-      stacking = "normal",
-      enableMouseTracking = TRUE)
-    ) %>% 
-    hc_series( list(name="Total Interest",data=result[['df']]$`Cum. Interest`, color="red"),
-               list(name="Total Deposits",data=result[['df']]$`Cum. Deposits`, color="green")
-    )
-  return(highchart())
-}
-
-get_interest_summary(1000, 0.05, 1, 5, 100)
